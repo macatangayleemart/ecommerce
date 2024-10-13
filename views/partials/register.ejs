@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #f4f6f9); /* Soft gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+        .register-container {
+            background-color: #ffffff; /* White background for the form */
+            padding: 40px;
+            border-radius: 15px; /* Softer rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid #80deea; /* Light blue border */
+        }
+        h1 {
+            font-size: 2.5rem; /* Increased font size */
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00796b; /* Teal for the title */
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #495057; /* Darker gray for labels */
+        }
+        .form-control {
+            border: 1px solid #80deea; /* Light blue border for input fields */
+            border-radius: 5px; /* Rounded corners for input fields */
+        }
+        .form-control:focus {
+            border-color: #00796b; /* Darker teal on focus */
+            box-shadow: 0 0 5px rgba(0, 121, 107, 0.5); /* Glow effect on focus */
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1rem;
+            background-color: #00796b; /* Teal background */
+            border: none;
+            transition: background-color 0.3s;
+            color: #fff; /* White text for contrast */
+        }
+        .btn-primary:hover {
+            background-color: #004d40; /* Darker teal on hover */
+        }
+        .btn-link {
+            font-size: 1rem;
+            color: #00796b; /* Teal for the link */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .btn-link:hover {
+            color: #004d40; /* Darker teal on hover */
+        }
+        .text-center {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Register as Client</h1>
+        <form action="/register" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <div class="text-center">
+            <p>Already have an account? <a href="/login" class="btn btn-link">Login here</a></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

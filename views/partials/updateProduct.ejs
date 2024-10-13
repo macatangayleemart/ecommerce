@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3f2fd, #f4f6f9); /* Soft gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+        .update-container {
+            background-color: #ffffff; /* White background for the form */
+            padding: 40px;
+            border-radius: 15px; /* More rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #80deea; /* Light blue border */
+        }
+        h1 {
+            font-size: 2.5rem; /* Increased font size for heading */
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00796b; /* Teal for heading */
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #333; /* Dark gray for labels */
+        }
+        .form-control {
+            border-radius: 10px; /* Rounded input corners */
+            border: 1px solid #80deea; /* Light blue border for input fields */
+        }
+        .form-control:focus {
+            border-color: #00796b; /* Darker teal on focus */
+            box-shadow: 0 0 5px rgba(0, 121, 107, 0.5); /* Glow effect on focus */
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2rem; /* Slightly larger button text */
+            background-color: #00796b; /* Teal background for button */
+            border: none;
+            border-radius: 5px; /* Rounded button corners */
+            transition: background-color 0.3s, transform 0.2s; /* Adding transform for hover effect */
+            color: #ffffff; /* White text for contrast */
+        }
+        .btn-primary:hover {
+            background-color: #004d40; /* Darker teal on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="update-container">
+        <h1>Update Product</h1>
+        <form action="/products/update/<%= product.id %>" method="POST">
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" step="0.01" class="form-control" id="price" name="price" value="<%= product.price %>" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"><%= product.description %></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Product</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

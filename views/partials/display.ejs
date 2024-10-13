@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #80deea); /* Light blue gradient */
+            font-family: 'Arial', sans-serif;
+            margin: 0; /* Remove default margin */
+        }
+        .navbar {
+            background-color: #004d73; /* Dark navy blue for navbar */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important; /* White text for navbar items */
+        }
+        .btn-primary {
+            background-color: #00796b; /* Teal for primary button */
+            border-color: #00796b;
+            color: white;
+            transition: background-color 0.3s ease; /* Smooth hover transition */
+        }
+        .btn-primary:hover {
+            background-color: #004d40; /* Darker teal on hover */
+        }
+        .btn-danger {
+            background-color: #e57373; /* Light red for delete button */
+            border-color: #e57373;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #d32f2f; /* Darker red on hover */
+        }
+        h1 {
+            margin-top: 30px;
+            text-align: center;
+            color: #004d73; /* Navy blue for headings */
+        }
+        table {
+            background-color: #ffffff; /* White background for the table */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin-bottom: 30px; /* Space below the table */
+        }
+        th {
+            background-color: #004d73; /* Navy blue for header cells */
+            color: white;
+        }
+        td {
+            vertical-align: middle;
+            background-color: #f1f8e9; /* Light green for zebra stripes */
+        }
+        tr:nth-child(even) td {
+            background-color: #e0f2f1; /* Light teal for alternating row */
+        }
+        .form-inline {
+            justify-content: center;
+            margin-bottom: 30px; /* Space below the search form */
+        }
+        .pagination {
+            justify-content: center; /* Center pagination */
+        }
+        .page-item.active .page-link {
+            background-color: #004d40; /* Dark teal for active page */
+            border-color: #004d40;
+        }
+        .page-link {
+            color: #00796b; /* Teal for pagination links */
+        }
+        .table {
+            margin-top: 20px; /* Space above the table */
+        }
+        .btn {
+            margin-right: 5px; /* Space between buttons */
+        }
+        .text-center {
+            margin-top: 30px; /* Space above back to dashboard button */
+        }
+        /* Hover effects for table rows */
+        tr:hover td {
+            background-color: #e0f7fa; /* Light blue on row hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/products/display">Product Management</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/products/add">Add Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/add">Add Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <h1>Product List</h1>
+
+        <!-- Search Form -->
+        <form action="/products/display" method="GET" class="form-inline">
+            <input type="text" name="search" value="<%= searchQuery %>" placeholder="Search products..." class="form-control mr-2" style="width: 300px;">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <!-- Product Table -->
+        <table class="table table-bordered table-hover text-center">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(function(product) { %>
+                    <tr>
+                        <td><%= product.id %></td>
+                        <td><%= product.name %></td>
+                        <td>$<%= product.price.toFixed(2) %></td>
+                        <td><%= product.description %></td>
+                        <td>
+                            <a href="/products/update/<%= product.id %>" class="btn btn-primary">Update</a>
+                            <form action="/products/delete/<%= product.id %>" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                        <a class="page-link" href="?page=<%= i %>&search=<%= searchQuery %>"><%= i %></a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+
+        <div class="text-center">
+            <a href="/clientdashboard" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (for navbar toggling on mobile) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

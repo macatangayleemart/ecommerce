@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+        .container:hover {
+            transform: translateY(-10px);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-control:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 8px rgba(102, 166, 255, 0.5);
+        }
+        .btn-primary {
+            background-color: #66a6ff;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #1e90ff;
+            color: #fff;
+        }
+        .btn-secondary {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            color: #333;
+            margin-top: 15px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Admin</h1>
+        <form action="/admin/add" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Admin</button>
+        </form>
+        <a href="/products/display" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</body>
+</html>

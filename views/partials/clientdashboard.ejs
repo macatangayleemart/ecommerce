@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f4f8, #e2e8f0); /* Light gray gradient */
+            font-family: 'Arial', sans-serif;
+            margin: 0; /* Remove default margin */
+        }
+        .navbar {
+            background-color: #005f73; /* Dark blue for navbar */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important; /* White text for navbar items */
+        }
+        .btn-danger {
+            background-color: #ff4b5c; /* Red for logout button */
+            border-radius: 20px; /* Rounded corners */
+        }
+        .container {
+            margin-top: 50px; /* Space above the container */
+        }
+        h1, h2 {
+            color: #005f73; /* Dark blue for headings */
+            text-align: center; /* Center the headings */
+            margin-bottom: 30px; /* Space below headings */
+        }
+        .card {
+            border: none; /* Remove border */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Lift the card slightly on hover */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* Darker shadow on hover */
+        }
+        .card-body {
+            padding: 20px; /* Padding for card body */
+            background-color: #ffffff; /* White background for cards */
+        }
+        .card-title {
+            color: #005f73; /* Dark blue for card titles */
+        }
+        .btn-primary {
+            background-color: #0a9396; /* Teal for primary button */
+            border: none; /* Remove border */
+            border-radius: 20px; /* Rounded corners */
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding for button */
+            font-size: 16px; /* Increase font size for readability */
+        }
+        .btn-primary:hover {
+            background-color: #007f83; /* Darker teal on hover */
+        }
+        .row {
+            display: flex;
+            justify-content: center; /* Center the product cards */
+        }
+        p {
+            color: #6c757d; /* Dark gray for paragraph text */
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/clientdashboard">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cart">Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="/logout" method="POST" class="form-inline">
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <h1>Welcome, <%= username %>!</h1>
+
+        <h2>Available Products</h2>
+        <div class="row">
+            <% if (products.length > 0) { %>
+                <% products.forEach(product => { %>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= product.name %></h5>
+                                <p class="card-text">$<%= product.price.toFixed(2) %></p>
+                                <p class="card-text"><%= product.description %></p>
+                                <form action="/cart/add" method="POST">
+                                    <input type="hidden" name="productId" value="<%= product.id %>">
+                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p class="text-center">No products available.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (for navbar toggling on mobile) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

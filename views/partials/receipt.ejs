@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e9ecef, #f4f6f9); /* Soft gradient background */
+            font-family: 'Arial', sans-serif;
+        }
+        .receipt-container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff; /* White background for the receipt */
+            border-radius: 15px; /* Softer rounded corners */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Softer shadow */
+            border: 1px solid #e0e0e0;
+        }
+        h1 {
+            font-size: 2.5rem; /* Increased font size */
+            text-align: center;
+            color: #6c757d; /* Dark gray for the title */
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 1.8rem; /* Increased font size */
+            color: #343a40; /* Dark gray for section title */
+            margin-bottom: 15px;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #495057; /* Slightly lighter dark gray for subheading */
+            margin-bottom: 10px;
+        }
+        .total-amount {
+            font-weight: bold;
+            font-size: 1.8rem; /* Increased font size */
+            color: #28a745; /* Green for the total amount */
+            margin-top: 20px;
+        }
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border: none;
+            border-bottom: 1px solid #ddd; /* Light gray for the borders */
+        }
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+        .btn-back {
+            margin-top: 30px;
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2rem;
+            background-color: #007bff; /* Blue for back button */
+            border: none;
+            color: white; /* White text for contrast */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+        }
+        .btn-back:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.02); /* Slight zoom on hover */
+        }
+        .thank-you-note {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            color: #6c757d; /* Dark gray for note text */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="receipt-container">
+        <h1>Thank You for Your Order, <%= username %>!</h1>
+        
+        <h2>Order Details</h2>
+        <p><strong>Order ID:</strong> <%= orderId %></p>
+        <p class="total-amount">Total Amount: $<%= typeof totalAmount === 'number' ? totalAmount.toFixed(2) : '0.00' %></p>
+        
+        <h3>Items Ordered:</h3>
+        <ul class="list-group mb-4">
+            <% cart.forEach(item => { %>
+                <li class="list-group-item">
+                    <span><%= item.quantity %> x <%= item.name %></span>
+                    <span>$<%= typeof item.price === 'number' ? item.price.toFixed(2) : '0.00' %></span>
+                </li>
+            <% }); %>
+        </ul>
+
+        <p class="thank-you-note">We appreciate your business and hope to serve you again soon!</p>
+        
+        <a href="/clientdashboard" class="btn btn-back">Back to Dashboard</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
